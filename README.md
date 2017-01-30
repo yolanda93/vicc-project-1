@@ -1,3 +1,4 @@
+
 # Vicc project: homemade VM Schedulers
 
 This project aims at developing different VM schedulers for a given IaaS cloud. Each scheduler will have meaningful properties for either the cloud customers or the cloud provider.
@@ -114,3 +115,4 @@ Develop a scheduler (`energy` flag) that reduces the overall energy consumption 
 ## Greedy scheduler
 
 Develop a scheduler that maximizes revenues. It is then important to provide a good trade-off between energy savings and penalties for SLA violation. Justify your choices and the theoretical complexity of the algorithm
+
