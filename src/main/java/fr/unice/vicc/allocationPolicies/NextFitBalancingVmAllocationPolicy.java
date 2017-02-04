@@ -21,6 +21,7 @@ public class NextFitBalancingVmAllocationPolicy extends AbstractAllocationPolicy
     int pointer; // pointer to the last host with a vm allocated
     public NextFitBalancingVmAllocationPolicy(List<? extends Host> list) {
         super(list);
+        pointer=0;
     }
 
     /**
@@ -46,7 +47,7 @@ public class NextFitBalancingVmAllocationPolicy extends AbstractAllocationPolicy
         }
         return false;
     }
-  
+
     /**
      * This method allocates the virtual machine in a specified host.
      * For this purpose, first it checks if there is enough resources in
