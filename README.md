@@ -70,7 +70,12 @@ This first scheduler aims only at discovering the CloudSim API. This scheduler s
 6. Now, implement `allocateHostForVm(Vm)` that is the main method of this class. As we said, the scheduler is very simple, it just schedule the `Vm` on the first appropriate `Host`.
 7. Test your simulator on a single day. If the simulation terminates successfully, all the VMs have been scheduled, all the cloudlets ran, and the provider revenues is displayed.
 8. Test the simulator runs successfully on all the days. For future comparisons, save the daily revenues and the global one. At this stage, it is ok to have penalties due to SLA violations
-	
+
+Incomes:    12398.59€
+Penalties:  402.16€
+Energy:     2645.63€
+Revenue:    9350.80€
+
 ## Support for Highly-Available applications
 
 
@@ -111,6 +116,11 @@ If the SLA is not met then the provider must pay penalties to the client. It is 
 ## Energy-efficient schedulers
 
 Develop a scheduler (`energy` flag) that reduces the overall energy consumption without relying on VM migration. The resulting simulation must consumes less energy than all the previous schedulers.
+
+Incomes:    12398.59€
+Penalties:  1413.50€
+Energy:     2604.30€
+Revenue:    8380.79€
 
 ## Greedy scheduler
 

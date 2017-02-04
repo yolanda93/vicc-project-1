@@ -33,8 +33,8 @@ public class NaiveVmAllocationPolicy extends AbstractAllocationPolicy {
   @Override
   public boolean allocateHostForVm(Vm vm) {
     for (Host h : getHostList()) {
-      if (!h.vmCreate(vm)) continue;
-      hoster.put(vm.getUid(), h);
+      if (!allocateHostForVm(vm,h))
+        continue;
       return true;
     }
     return false;

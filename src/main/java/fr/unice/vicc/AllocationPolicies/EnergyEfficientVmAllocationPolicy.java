@@ -28,15 +28,19 @@ public class EnergyEfficientVmAllocationPolicy extends AbstractAllocationPolicy 
    * @throws NullPointerException if there are no hosts in the internal Host List.
    */
   public boolean allocateHostForVm(Vm vm) {
-    Iterator<Host> it = getHostList().iterator();
-    Host bestHost = it.next();
-    Host tempHost = null;
-    while (it.hasNext()) {
-      tempHost = it.next();
-      if (tempHost.getAvailableMips() < bestHost.getAvailableMips())
-        bestHost = tempHost;
+    List hostList = getHostList();
+    Collections.sort(hostList, new Comparator<Host>() {
+      @Override
+      public int compare(Host o1, Host o2) {
+        return (int)(o1.getAvailableMips() - o2.getAvailableMips());
+      }
+    });
+    for (Host host : getHostList()) {
+      if (!allocateHostForVm(vm, host)) {
+        continue;
+      }
+      return true;
     }
-    return bestHost != null && allocateHostForVm(vm, bestHost);
+    return false;
   }
-
 }
