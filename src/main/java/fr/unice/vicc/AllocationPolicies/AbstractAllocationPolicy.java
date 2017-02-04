@@ -73,7 +73,7 @@ public abstract class AbstractAllocationPolicy extends VmAllocationPolicy {
    * @param vmId   The id of a virtual machine to find.
    * @param userId The id of an user.
    * @return The host where it is allocated
-   * See also {@link org.cloudbus.cloudsim.Vm#getUid(int, int) getUid} method.
+   * See also {@link Vm#getUid(int, int)} method.
    */
   @Override
   public Host getHost(int vmId, int userId) {
@@ -89,5 +89,38 @@ public abstract class AbstractAllocationPolicy extends VmAllocationPolicy {
    * @return new list with Uid,host if dynamic, null if static.
    */
   @Override
-  public List<Map<String, Object>> optimizeAllocation(List<? extends Vm> list) {return null;}
+  public List<Map<String, Object>> optimizeAllocation(List<? extends Vm> list) {
+    return null;
+  }
+
+  /**
+   * This method will find a host for the provided VM.
+   * In the case of the Naive Policy, we just need to find the first VM
+   * available, so we will iterate over all the VM trying to allocate one
+   * of them.
+   * If  successful, the method will return true. If all
+   * the hosts are unavailable for allocation, it will return false.
+   *
+   * @param vm the virtual machine to be allocated.
+   * @return true if vm was successful allocated and false otherwise.
+   */
+  @Override
+  public boolean allocateHostForVm(Vm vm, Host host) {
+    if (!host.vmCreate(vm))
+      return false;
+    hoster.put(vm.getUid(), host);
+    return true;
+  }
+
+  /**
+   * De-allocates the vm passed by parameter.
+   *
+   * @param vm the virtual machine to be de-allocated.
+   * @throws NullPointerException at runtime if the vm was not previously allocated.
+   */
+  @Override
+  public void deallocateHostForVm(Vm vm) {
+    hoster.get(vm.getUid()).vmDestroy(vm);
+  }
+
 }
