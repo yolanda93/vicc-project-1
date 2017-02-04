@@ -32,7 +32,7 @@ public class VmAllocationPolicyFactory {
       case "nextFit":
         return new NextFitVmAllocationPolicy(hosts);
       case "worstFit":
-        return new NaiveVmAllocationPolicy(hosts);
+        return new WorstFitBalancingVmAllocationPolicy(hosts);
       case "noViolations":
         return new NoViolationsVmAllocationPolicy(hosts);
       case "energy":
