@@ -1,6 +1,5 @@
 package fr.unice.vicc.AllocationPolicies;
 
-import fr.unice.vicc.AllocationPolicies.AbstractAllocationPolicy;
 import org.cloudbus.cloudsim.Host;
 import org.cloudbus.cloudsim.Vm;
 
@@ -13,6 +12,11 @@ import java.util.Map;
  * without any other consideration.
  */
 public class NaiveVmAllocationPolicy extends AbstractAllocationPolicy {
+  /**
+   * Being very basic, the Naive policy doesn't add any new attribute and can
+   * safely use its parent's ones.
+   * @param list
+   */
   public NaiveVmAllocationPolicy(List<? extends Host> list) {
     super(list);
   }
@@ -21,8 +25,8 @@ public class NaiveVmAllocationPolicy extends AbstractAllocationPolicy {
   /**
    * The naive policy is static, meaning that it will not reallocate the vms
    * after the initial allocation, so this method will always return null
-   * @param list list of virtual machines
-   * @return
+   * @param list list of virtual machines.
+   * @return always null since there are no dynamic optimizations to be made.
    */
   @Override
   public List<Map<String, Object>> optimizeAllocation(List<? extends Vm> list) {
@@ -68,7 +72,10 @@ public class NaiveVmAllocationPolicy extends AbstractAllocationPolicy {
     return true;
   }
 
-  //Given a Vm get its host and deallocate the vm
+  /**
+   * Given a Virtual Machine, deallocate it from wherever is allocated.
+   * @param vm the Virtual Machine to deallocate
+   */
   @Override
   public void deallocateHostForVm(Vm vm) {
     hoster.remove(vm.getUid()).vmDestroy(vm);
