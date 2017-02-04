@@ -1,49 +1,59 @@
-package fr.unice.vicc.AllocationPolicies;
-
-import org.cloudbus.cloudsim.Host;
-import org.cloudbus.cloudsim.Vm;
+package fr.unice.vicc.allocationPolicies;
 
 import java.util.List;
-import java.util.Map;
+
+import org.cloudbus.cloudsim.Host;
+import org.cloudbus.cloudsim.Pe;
+import org.cloudbus.cloudsim.Vm;
 
 /**
- * Created by fhermeni2 on 16/11/2015.
+ * Author: ignacio
+ * Date: 04/02/2017.
  */
 public class NoViolationsVmAllocationPolicy extends AbstractAllocationPolicy {
 
-    public NoViolationsVmAllocationPolicy(List<? extends Host> list) {
-        super(list);
-    }
+  /**
+   * The default constructor from AbstractAllocationPolicy is enough.
+   * @param list
+   */
+  public NoViolationsVmAllocationPolicy(List<? extends Host> list) {
+    super(list);
+  }
 
-    @Override
-    public List<Map<String, Object>> optimizeAllocation(List<? extends Vm> list) {
-        //In the naive policy it returns null
-        return null;
+  public boolean allocateHostForVm(Vm vm, Host host) {
+    if (host.vmCreate(vm)) {
+      //the host is appropriate, we track it
+      hoster.put(vm.getUid(), host);
+      return true;
     }
+    return false;
+  }
 
-    @Override
-    public boolean allocateHostForVm(Vm vm) {
-        for (Host h : getHostList()) {
-            if (h.vmCreate(vm)) {
-                hoster.put(vm.getUid(), h);
-                return true;
-            }
+  public boolean allocateHostForVm(Vm vm) {
+
+    for (Host h : getHostList()) {
+      boolean suitableHost = false;
+      for (Pe processingElem : h.getPeList()) {
+        if (vm.getMips() < processingElem.getPeProvisioner().getAvailableMips()) {
+          suitableHost = true;
+          break;
         }
-        return false;
-    }
+      }
 
-    @Override
-    public boolean allocateHostForVm(Vm vm, Host host) {
-        if (host.vmCreate(vm)) {
-            hoster.put(vm.getUid(), host);
-            return true;
+      if (suitableHost) {
+        if (h.vmCreate(vm)) {
+          hoster.put(vm.getUid(), h);
+          return true;
         }
-        return false;
+      }
     }
+    return false;
+  }
 
-    //Given a Vm get its host and deallocate the vm
-    @Override
-    public void deallocateHostForVm(Vm vm) {
-        hoster.remove(vm.getUid()).vmDestroy(vm);
-    }
+  @Override
+  public void deallocateHostForVm(Vm v) {
+    //get the host and remove the vm
+    hoster.get(v.getUid()).vmDestroy(v);
+  }
+
 }

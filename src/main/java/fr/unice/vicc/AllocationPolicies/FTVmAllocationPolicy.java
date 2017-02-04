@@ -4,20 +4,36 @@ import org.cloudbus.cloudsim.Host;
 import org.cloudbus.cloudsim.Vm;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by fhermeni2 on 16/11/2015.
  * This Allocation Policy will allocate any VM in the first host available
  * without any other consideration.
  */
-public class NaiveVmAllocationPolicy extends AbstractAllocationPolicy {
+public class FTVmAllocationPolicy extends AbstractAllocationPolicy {
   /**
    * Being very basic, the Naive policy doesn't add any new attribute and can
    * safely use its parent's ones.
+   *
    * @param list
    */
-  public NaiveVmAllocationPolicy(List<? extends Host> list) {
+  public FTVmAllocationPolicy(List<? extends Host> list) {
     super(list);
+  }
+
+
+  /**
+   * The naive policy is static, meaning that it will not reallocate the vms
+   * after the initial allocation, so this method will always return null
+   *
+   * @param list list of virtual machines.
+   * @return always null since there are no dynamic optimizations to be made.
+   */
+  @Override
+  public List<Map<String, Object>> optimizeAllocation(List<? extends Vm> list) {
+    //For the naive policy it returns null
+    return null;
   }
 
   /**
@@ -27,6 +43,7 @@ public class NaiveVmAllocationPolicy extends AbstractAllocationPolicy {
    * of them.
    * If successful, the method will return true. If all
    * the hosts are unavailable for allocation, it will return false.
+   *
    * @param vm the virtual machine to be allocated.
    * @return true if vm was successful allocated, false otherwise.
    */
@@ -47,6 +64,7 @@ public class NaiveVmAllocationPolicy extends AbstractAllocationPolicy {
    * of them.
    * If  successful, the method will return true. If all
    * the hosts are unavailable for allocation, it will return false.
+   *
    * @param vm the virtual machine to be allocated.
    * @return true if vm was successful allocated, false otherwise.
    */
@@ -60,6 +78,7 @@ public class NaiveVmAllocationPolicy extends AbstractAllocationPolicy {
 
   /**
    * Given a Virtual Machine, deallocate it from wherever is allocated.
+   *
    * @param vm the Virtual Machine to deallocate
    */
   @Override
