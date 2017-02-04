@@ -1,59 +1,50 @@
 package fr.unice.vicc;
 
+import fr.unice.vicc.AllocationPolicies.AbstractAllocationPolicy;
 import org.cloudbus.cloudsim.Host;
 import org.cloudbus.cloudsim.Vm;
-import org.cloudbus.cloudsim.VmAllocationPolicy;
-import org.cloudbus.cloudsim.power.PowerHost;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * Created by fhermeni2 on 16/11/2015.
  */
-public class NaiveVmAllocationPolicy extends VmAllocationPolicy {
-
-    /** The map to track the server that host each running VM. */
-    private Map<Vm,Host> hoster;
+public class NaiveVmAllocationPolicy extends AbstractAllocationPolicy {
 
     public NaiveVmAllocationPolicy(List<? extends Host> list) {
         super(list);
-        hoster =new HashMap<>();
-    }
-
-    @Override
-    protected void setHostList(List<? extends Host> hostList) {
-        super.setHostList(hostList);
-        hoster = new HashMap<>();
     }
 
     @Override
     public List<Map<String, Object>> optimizeAllocation(List<? extends Vm> list) {
+        //In the naive policy it returns null
         return null;
     }
 
     @Override
-    public boolean allocateHostForVm(Vm vm) {        
+    public boolean allocateHostForVm(Vm vm) {
+        for (Host h : getHostList()) {
+            if (h.vmCreate(vm)) {
+                hoster.put(vm.getUid(), h);
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
     public boolean allocateHostForVm(Vm vm, Host host) {
+        if (host.vmCreate(vm)) {
+            hoster.put(vm.getUid(), host);
+            return true;
+        }
         return false;
     }
 
+    //Given a Vm get its host and deallocate the vm
     @Override
     public void deallocateHostForVm(Vm vm) {
-    }
-
-    @Override
-    public Host getHost(Vm vm) {
-        return null;
-    }
-
-    @Override
-    public Host getHost(int vmId, int userId) {
-        return null;
+        hoster.remove(vm.getUid()).vmDestroy(vm);
     }
 }
