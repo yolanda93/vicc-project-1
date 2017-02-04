@@ -1,4 +1,4 @@
-package fr.unice.vicc.AllocationPolicies;
+package fr.unice.vicc.allocationPolicies;
 
 import org.cloudbus.cloudsim.Host;
 import org.cloudbus.cloudsim.Vm;
@@ -17,9 +17,9 @@ import java.util.Map;
  *  @version 1.0
  *  @since   2017-02-04
  */
-public class LoadBalancingVmAllocationPolicy extends AbstractAllocationPolicy {
+public class NextFitBalancingVmAllocationPolicy extends AbstractAllocationPolicy {
 
-    public LoadBalancingVmAllocationPolicy(List<? extends Host> list) {
+    public NextFitBalancingVmAllocationPolicy(List<? extends Host> list) {
         super(list);
     }
 
@@ -27,17 +27,11 @@ public class LoadBalancingVmAllocationPolicy extends AbstractAllocationPolicy {
      * This method is used to add two integers. This is
      * a the simplest form of a class method, just to
      * show the usage of various javadoc Tags.
-     * @param list This is the ---
+     * @param vm This is the ---
      * @return List<Map<String, Object>> This returns ----.
      */
     @Override
     public boolean allocateHostForVm(Vm vm) {
-        for (Host h : getHostList()) {
-            if (h.vmCreate(vm)) {
-                hoster.put(vm.getUid(), h);
-                return true;
-            }
-        }
         return false;
     }
 
@@ -45,15 +39,11 @@ public class LoadBalancingVmAllocationPolicy extends AbstractAllocationPolicy {
      * This method is used to add two integers. This is
      * a the simplest form of a class method, just to
      * show the usage of various javadoc Tags.
-     * @param list This is the ---
+     * @param vm This is the ---
      * @return List<Map<String, Object>> This returns ----.
      */
     @Override
     public boolean allocateHostForVm(Vm vm, Host host) {
-        if (host.vmCreate(vm)) {
-            hoster.put(vm.getUid(), host);
-            return true;
-        }
         return false;
     }
 
@@ -61,9 +51,9 @@ public class LoadBalancingVmAllocationPolicy extends AbstractAllocationPolicy {
      * This method is used to add two integers. This is
      * a the simplest form of a class method, just to
      * show the usage of various javadoc Tags.
-     * @param list This is the ---
+     * @param v This is the ---
      * @return List<Map<String, Object>> This returns ----.
-     */s
+     */
     @Override
     public void deallocateHostForVm(Vm v) {
         //get the host and remove the vm
