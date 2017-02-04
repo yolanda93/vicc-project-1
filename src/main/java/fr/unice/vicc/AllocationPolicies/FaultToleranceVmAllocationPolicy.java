@@ -9,9 +9,9 @@ import java.util.Map;
 /**
  * Created by fhermeni2 on 16/11/2015.
  */
-public class LoadBalancingVmAllocationPolicy extends AbstractAllocationPolicy {
+public class AntiAffinityVmAllocationPolicy extends AbstractAllocationPolicy {
 
-    public LoadBalancingVmAllocationPolicy(List<? extends Host> list) {
+    public AntiAffinityVmAllocationPolicy(List<? extends Host> list) {
         super(list);
     }
 
