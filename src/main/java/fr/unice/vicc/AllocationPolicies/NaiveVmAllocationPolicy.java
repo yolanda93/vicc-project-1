@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Created by fhermeni2 on 16/11/2015.
  * This Allocation Policy will allocate any VM in the first host available
- * without any other consideration
+ * without any other consideration.
  */
 public class NaiveVmAllocationPolicy extends AbstractAllocationPolicy {
   public NaiveVmAllocationPolicy(List<? extends Host> list) {
