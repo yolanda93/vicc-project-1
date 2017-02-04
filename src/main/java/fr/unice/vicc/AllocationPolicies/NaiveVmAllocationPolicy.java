@@ -1,4 +1,4 @@
-package fr.unice.vicc;
+package fr.unice.vicc.AllocationPolicies;
 
 import fr.unice.vicc.AllocationPolicies.AbstractAllocationPolicy;
 import org.cloudbus.cloudsim.Host;
