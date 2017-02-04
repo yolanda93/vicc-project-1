@@ -33,7 +33,7 @@ public class VmAllocationPolicyFactory {
       case "worstFit":
         //return new NaiveVmAllocationPolicy(hosts);
       case "greedy":
-        //return new NaiveVmAllocationPolicy(hosts);
+        return new GreedyVmAllocationPolicy(hosts);
       case "naive":
         return new NaiveVmAllocationPolicy(hosts);
       case "noViolations":
