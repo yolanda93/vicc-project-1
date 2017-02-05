@@ -74,4 +74,3 @@ public class NextFitBalancingVmAllocationPolicy extends AbstractAllocationPolicy
         this.hoster.get(v.getUid()).vmDestroy(v);
     }
 }
-}
