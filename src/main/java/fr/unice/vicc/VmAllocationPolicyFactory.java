@@ -21,9 +21,8 @@ public class VmAllocationPolicyFactory {
   VmAllocationPolicy make(String id, List<PowerHost> hosts) {
 
     switch (id) {
-      case "naive":
-        return new NaiveVmAllocationPolicy(hosts);
-      case "antiAffinity":
+
+      case "antiaffinity":
         return new AntiAffinityVmAllocationPolicy(hosts);
       case "dr":
         return new FTVmAllocationPolicy(hosts);
@@ -33,13 +32,14 @@ public class VmAllocationPolicyFactory {
         return new NextFitVmAllocationPolicy(hosts);
       case "worstFit":
         return new WorstFitBalancingVmAllocationPolicy(hosts);
+      case "greedy":
+        return new GreedyVmAllocationPolicy(hosts);
+      case "naive":
+        return new NaiveVmAllocationPolicy(hosts);
       case "noViolations":
         return new NoViolationsVmAllocationPolicy(hosts);
       case "energy":
-        return new NaiveVmAllocationPolicy(hosts);
-      case "greedy":
-        return new NaiveVmAllocationPolicy(hosts);
-
+        return new EnergyEfficientVmAllocationPolicy(hosts);
     }
     throw new IllegalArgumentException("No such policy '" + id + "'");
   }

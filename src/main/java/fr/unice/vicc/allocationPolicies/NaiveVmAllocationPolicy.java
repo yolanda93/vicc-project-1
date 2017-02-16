@@ -33,37 +33,10 @@ public class NaiveVmAllocationPolicy extends AbstractAllocationPolicy {
   @Override
   public boolean allocateHostForVm(Vm vm) {
     for (Host h : getHostList()) {
-      if (!h.vmCreate(vm)) continue;
-      hoster.put(vm.getUid(), h);
+      if (!allocateHostForVm(vm,h))
+        continue;
       return true;
     }
     return false;
-  }
-
-  /**
-   * This method will find a host for the provided VM.
-   * In the case of the Naive Policy, we just need to find the first VM
-   * available, so we will iterate over all the VM trying to allocate one
-   * of them.
-   * If  successful, the method will return true. If all
-   * the hosts are unavailable for allocation, it will return false.
-   * @param vm the virtual machine to be allocated.
-   * @return true if vm was successful allocated, false otherwise.
-   */
-  @Override
-  public boolean allocateHostForVm(Vm vm, Host host) {
-    if (!host.vmCreate(vm))
-      return false;
-    hoster.put(vm.getUid(), host);
-    return true;
-  }
-
-  /**
-   * Given a Virtual Machine, deallocate it from wherever is allocated.
-   * @param vm the Virtual Machine to deallocate
-   */
-  @Override
-  public void deallocateHostForVm(Vm vm) {
-    hoster.remove(vm.getUid()).vmDestroy(vm);
   }
 }

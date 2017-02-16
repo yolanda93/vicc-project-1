@@ -70,7 +70,12 @@ This first scheduler aims only at discovering the CloudSim API. This scheduler s
 6. Now, implement `allocateHostForVm(Vm)` that is the main method of this class. As we said, the scheduler is very simple, it just schedule the `Vm` on the first appropriate `Host`.
 7. Test your simulator on a single day. If the simulation terminates successfully, all the VMs have been scheduled, all the cloudlets ran, and the provider revenues is displayed.
 8. Test the simulator runs successfully on all the days. For future comparisons, save the daily revenues and the global one. At this stage, it is ok to have penalties due to SLA violations
-	
+
+Incomes:    12398.59€
+Penalties:  402.16€
+Energy:     2645.63€
+Revenue:    9350.80€
+
 ## Support for Highly-Available applications
 
 
@@ -108,11 +113,100 @@ If the SLA is not met then the provider must pay penalties to the client. It is 
 
 1. Implement a scheduler that ensures there can be no SLA violation (`noViolations` flag). Remember the nature of the hypervisor in terms of CPU allocation and the VM templates. The scheduler is effective when you can successfully simulate all the days, with the `Revenue` class reporting no re-fundings due to SLA violation.
 
+Incomes:    12398.59€
+Penalties:  0.00€
+Energy:     2868.74€
+Revenue:    9529.85€
+
+
 ## Energy-efficient schedulers
 
 Develop a scheduler (`energy` flag) that reduces the overall energy consumption without relying on VM migration. The resulting simulation must consumes less energy than all the previous schedulers.
+
+Incomes:    12398.59€
+Penalties:  1413.50€
+Energy:     2604.30€
+Revenue:    8380.79€
 
 ## Greedy scheduler
 
 Develop a scheduler that maximizes revenues. It is then important to provide a good trade-off between energy savings and penalties for SLA violation. Justify your choices and the theoretical complexity of the algorithm
 
+95
+Incomes:    12398.59€
+Penalties:  0.00€
+Energy:     2847.90€
+Revenue:    9550.69€
+
+90
+Incomes:    12398.59€
+Penalties:  7.24€
+Energy:     2837.03€
+Revenue:    9554.32€
+
+0.85
+Incomes:    12398.59€
+Penalties:  7.24€
+Energy:     2837.03€
+Revenue:    9554.32€
+
+0.80
+Incomes:    12398.59€
+Penalties:  7.24€
+Energy:     2837.03€
+Revenue:    9554.32€
+
+0.75
+Incomes:    12398.59€
+Penalties:  7.24€
+Energy:     2837.03€
+Revenue:    9554.32€
+
+0.70
+Incomes:    12398.59€
+Penalties:  449.06€
+Energy:     2827.57€
+Revenue:    9121.97€
+
+0.65
+Incomes:    12398.59€
+Penalties:  449.06€
+Energy:     2827.57€
+Revenue:    9121.97€
+
+0.60
+Incomes:    12398.59€
+Penalties:  449.06€
+Energy:     2827.57€
+Revenue:    9121.97€
+
+0.50
+Incomes:    12398.59€
+Penalties:  449.06€
+Energy:     2827.57€
+Revenue:    9121.97€
+
+0.40
+Incomes:    12398.59€
+Penalties:  449.06€
+Energy:     2827.57€
+Revenue:    9121.97€
+
+-500 flat
+hop
+Incomes:    12398.59€
+Penalties:  7.24€
+Energy:     2754.93€
+Revenue:    9636.42€
+
+1.1 to host
+
+Incomes:    12398.59€
+Penalties:  449.06€
+Energy:     2827.57€
+Revenue:    9121.97€
+
+Incomes:    12398.59€
+Penalties:  0.00€
+Energy:     2847.90€
+Revenue:    9550.69€
