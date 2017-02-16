@@ -192,21 +192,9 @@ Penalties:  449.06€
 Energy:     2827.57€
 Revenue:    9121.97€
 
--500 flat
-hop
-Incomes:    12398.59€
-Penalties:  7.24€
-Energy:     2754.93€
-Revenue:    9636.42€
-
 1.1 to host
 
 Incomes:    12398.59€
 Penalties:  449.06€
 Energy:     2827.57€
 Revenue:    9121.97€
-
-Incomes:    12398.59€
-Penalties:  0.00€
-Energy:     2847.90€
-Revenue:    9550.69€
