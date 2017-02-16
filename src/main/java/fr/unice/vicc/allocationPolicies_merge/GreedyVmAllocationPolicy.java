@@ -1,4 +1,4 @@
-package fr.unice.vicc.allocationPolicies;
+package fr.unice.vicc.allocationPolicies_merge;
 
 import org.cloudbus.cloudsim.Host;
 import org.cloudbus.cloudsim.Pe;
