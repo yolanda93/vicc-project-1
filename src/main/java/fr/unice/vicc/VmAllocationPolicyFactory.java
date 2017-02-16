@@ -22,7 +22,7 @@ public class VmAllocationPolicyFactory {
 
     switch (id) {
 
-      case "antiaffinity":
+      case "antiAffinity":
         return new AntiAffinityVmAllocationPolicy(hosts);
       case "dr":
         return new FTVmAllocationPolicy(hosts);
