@@ -1,6 +1,6 @@
 package fr.unice.vicc;
 
-import fr.unice.vicc.allocationPolicies.*;
+import fr.unice.vicc.allocationPolicies_merge.*;
 import org.cloudbus.cloudsim.VmAllocationPolicy;
 import org.cloudbus.cloudsim.power.PowerHost;
 
