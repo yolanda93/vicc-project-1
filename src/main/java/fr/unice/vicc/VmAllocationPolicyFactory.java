@@ -29,7 +29,7 @@ public class VmAllocationPolicyFactory {
       case "ft":
         return new FTVmAllocationPolicy(hosts);
       case "nextFit":
-        return new NextFitVmAllocationPolicy(hosts);
+        return new NextFitBalancingVmAllocationPolicy(hosts);
       case "worstFit":
         return new WorstFitBalancingVmAllocationPolicy(hosts);
       case "greedy":
