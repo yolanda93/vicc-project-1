@@ -132,69 +132,13 @@ Revenue:    8380.79€
 
 Develop a scheduler that maximizes revenues. It is then important to provide a good trade-off between energy savings and penalties for SLA violation. Justify your choices and the theoretical complexity of the algorithm
 
-95
-Incomes:    12398.59€
-Penalties:  0.00€
-Energy:     2847.90€
-Revenue:    9550.69€
+With an overbooking of 500 MIPS per VM:
 
-90
-Incomes:    12398.59€
-Penalties:  7.24€
-Energy:     2837.03€
-Revenue:    9554.32€
+Income: 12,398.59 €	
+Energy: 2,754.93 €	
+Penalties: 7.24 €
+Revenue: 9,636.42 €
 
-0.85
-Incomes:    12398.59€
-Penalties:  7.24€
-Energy:     2837.03€
-Revenue:    9554.32€
-
-0.80
-Incomes:    12398.59€
-Penalties:  7.24€
-Energy:     2837.03€
-Revenue:    9554.32€
-
-0.75
-Incomes:    12398.59€
-Penalties:  7.24€
-Energy:     2837.03€
-Revenue:    9554.32€
-
-0.70
-Incomes:    12398.59€
-Penalties:  449.06€
-Energy:     2827.57€
-Revenue:    9121.97€
-
-0.65
-Incomes:    12398.59€
-Penalties:  449.06€
-Energy:     2827.57€
-Revenue:    9121.97€
-
-0.60
-Incomes:    12398.59€
-Penalties:  449.06€
-Energy:     2827.57€
-Revenue:    9121.97€
-
-0.50
-Incomes:    12398.59€
-Penalties:  449.06€
-Energy:     2827.57€
-Revenue:    9121.97€
-
-0.40
-Incomes:    12398.59€
-Penalties:  449.06€
-Energy:     2827.57€
-Revenue:    9121.97€
-
-1.1 to host
-
-Incomes:    12398.59€
-Penalties:  449.06€
-Energy:     2827.57€
-Revenue:    9121.97€
+[This figure](figs/Greedy_Calibration.png) shows the different values points used to produce overbooking in the host machines. We hve decided to use 500 MIPS at is is the maximun value obtained. Maybe there are better values between 450 and 550, but every test takes 10 minutes and we already ran from 0 to 950 with a step of 50.
+The ["Normalized Version"](figs/Greedy_Calibration.png) shows a the difference between the values of each point and the maximum for that metric, it can provide a better view of how the system evolves.
+We also tried using a "tolerance" factor by multipliying the VM's MIPS by a number between 1.0 and 0.5, using increments of 0.05, but the results were worse in all the cases.
