@@ -25,7 +25,7 @@ public class VmAllocationPolicyFactory {
       case "antiAffinity":
         return new AntiAffinityVmAllocationPolicy(hosts);
       case "dr":
-        return new FTVmAllocationPolicy(hosts);
+        return new DisasterRecoveryVmAllocationPolicy(hosts);
       case "ft":
         return new FTVmAllocationPolicy(hosts);
       case "nextFit":

@@ -124,7 +124,7 @@ public abstract class AbstractAllocationPolicy extends VmAllocationPolicy {
    */
   @Override
   public void deallocateHostForVm(Vm vm) {
-    hoster.get(vm.getUid()).vmDestroy(vm);
+    hoster.remove(vm.getUid()).vmDestroy(vm);
   }
 
 }
