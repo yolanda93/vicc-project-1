@@ -46,7 +46,7 @@ public class AntiAffinityVmAllocationPolicy extends AbstractAllocationPolicy {
    * @key a Host id
    * @value a list of affinities of the VM stored in each host
    */
-  public Map<Integer, List<Integer>> affinityMap;
+  private Map<Integer, List<Integer>> affinityMap;
 
   /**
    * It will allocate the VM in a host which VMs does not share the same Affinity.

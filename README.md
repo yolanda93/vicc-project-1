@@ -85,12 +85,26 @@ Let consider the VMs run replicated applications. To make them fault-tolerant to
 1. Implement a new scheduler (`antiAffinity` flag) that places the Vms with regards to their affinity. In practice, all Vms with an id between [0-99] must be on distinct nodes, the same with Vms having an id between [100-199], [200-299], ... .
 1. What is the impact of such an algorithm over the cluster hosting capacity ? Why ?
 
+As we can see in the results and we can presume from the code, the feature of having tolerant VMs increase the profit of the system. The drawbacks are a small consume of energy because there are more working machines than in the naive policy.
+
+Incomes:    12398,59€
+Penalties:  200,95€
+Energy:     2688,44€
+Revenue:    9509,21€
+
 ### Preparing for disaster recovery
 
 The previous scheduler ensures fault tolerance to some node failures.
 Switches can also fail and in such a circumstance, a lot of nodes become unavailable. Let consider a hierarchical network. The Ml110G4 nodes are connected to one switch. The Ml110G5 to another. Both switches are then interconnected.
 
 1. Write a scheduler (flag `dr`) that ensures fault tolerance to a single switch failure. Balance the replica as possible to minimize the loss in case of failure.
+
+In this policy, the VMs are balanced between two only points of failure resulting in a nengligible reduction in the penalties.
+
+Incomes:    12398,59€
+Penalties:  200,30€
+Energy:     2692,80€
+Revenue:    9505,49€
 
 ### Fault-tolerance for standalone VMs
 
@@ -99,12 +113,27 @@ When a VM is not replicated (/e.g/ remote desktop scenario), fault-tolerance is 
 1. Implement a new scheduler (`ft` flag) that ensures the fault tolerance to 1 node failure for all the VM having an id that is a multiple of 10.
 
 2. How can we report the infrastructure load in that particular context ?
+
+Compared to the previous policies, in this one we try to assure fault-tolerance to all VMS which IDs have as a result 0 or 1 of the modulus 10 applied to their ID.
+This policy does not show the expected results and we can assume that it is produced because we have not understand correctly this policy or our implementation was incorrect.  
+
+Incomes:    12398,59€ 
+Penalties:  402,16€
+Energy:     2645,63€
+Revenue:    9350,80€
  
 ## Load balancing
 
 1. Develop a scheduler that performs load balancing using a [next fit algorithm](http://lmgtfy.com/?q=next+fit+algorithm) (flag `nextFit`). You should observe fewer penalties with regards to the naive scheduler.
 1. Develop another algorithm based on a /worst fit algorithm/ (`worstFit` flag) that balances with regards to both RAM and mips. Justify the method you choosed to consider the two dimensions and an evaluation metric. It is ok to work in a pragmatic manner (different approaches, keep the best) at the moment you prove your statements.
 1. Which algorithms performs the best in terms of reducing the SLA violation. Why ?
+
+In this policy focus on allocating the virtual machine in a host machine following the Next Fit algorithm. This algorithm allocates the vm closer to the last host used.
+
+Incomes:    12398,59€
+Penalties:  346,75€
+Energy:     2715,76€
+Revenue:    9336,07€
 
 ## Performance satisfaction
 

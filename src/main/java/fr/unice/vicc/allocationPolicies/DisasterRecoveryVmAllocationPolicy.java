@@ -49,7 +49,7 @@ public class DisasterRecoveryVmAllocationPolicy extends AbstractAllocationPolicy
    * @key a Host id
    * @value a list of affinities of the VM stored in each host
    */
-  public Map<Integer, List<Integer>> affinityMap;
+  private Map<Integer, List<Integer>> affinityMap;
 
   /**
    * A map with the ids of the hosts and the affinities of the VMs stored in each host.
@@ -59,7 +59,7 @@ public class DisasterRecoveryVmAllocationPolicy extends AbstractAllocationPolicy
    * @value an array of two values that represents the number of affinitied VMs connected to each
    * switch (2 switches - 2 ints values)
    */
-  public Map<Integer, Integer[]> affinityNodesSwitch;
+  private Map<Integer, Integer[]> affinityNodesSwitch;
 
 
   /**
