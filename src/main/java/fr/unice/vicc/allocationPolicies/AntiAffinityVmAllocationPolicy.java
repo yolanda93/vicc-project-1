@@ -9,11 +9,15 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Author: Marcos
- * Date: 17/02/2017.
+ *  @author Yolanda de la Hoz Simon
+ *  @author Ignacio Uya Lassarte
+ *  @author Marcos Bernal España
+ *
+ *  @version 1.0
+ *  @since   2017-02-04
  <p/>
  * This class defines a policy where we try to respect the SLA as much as possible while also
- * trying to store the VMs in different nodes acording to their IDs. All Vms with an id between [X00-X99]
+ * trying to store the VMs in different nodes according to their IDs affinity. All Vms with an id between [X00-X99]
  * must be on distinct nodes, where X is the same digit (0,1,2...).
  *
  * The main problem here is that when a fault tolerant schedule places two VM replicas over the same host,
@@ -25,12 +29,14 @@ import java.util.Map;
 public class AntiAffinityVmAllocationPolicy extends AbstractAllocationPolicy {
 
   /**
-   * The default constructor from AbstractAllocationPolicy is enough.
+   * The default constructor from AbstractAllocationPolicy is called to build the class.
+   * Then the attributes used in this class are initiated.
    *
    * @param list a list of hosts
    */
   public AntiAffinityVmAllocationPolicy(List<? extends Host> list) {
     super(list);
+    affinityMap = new HashMap<Integer, List<Integer>>();
   }
 
   /**
@@ -40,11 +46,11 @@ public class AntiAffinityVmAllocationPolicy extends AbstractAllocationPolicy {
    * @key a Host id
    * @value a list of affinities of the VM stored in each host
    */
-  public Map<Integer, List<Integer>> affinityMap = new HashMap<Integer, List<Integer>>();
+  public Map<Integer, List<Integer>> affinityMap;
 
   /**
    * It will allocate the VM in a host which VMs does not share the same Affinity.
-   * In order to do that, a the HashMap affinityMap register the affinity of each host in order to
+   * In order to do that, the HashMap affinityMap register the affinity of each host in order to
    * avoid having two VMs with the same affinity.
    *
    * @param vm the vm to be allocated
@@ -80,7 +86,6 @@ public class AntiAffinityVmAllocationPolicy extends AbstractAllocationPolicy {
    * storing it.
    *
    * @param vm the virtual machine to be de-allocated.
-   * @throws NullPointerException at runtime if the vm was not previously allocated.
    */
   @Override
   public void deallocateHostForVm(Vm vm) {
