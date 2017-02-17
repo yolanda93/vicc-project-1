@@ -7,8 +7,13 @@ import org.cloudbus.cloudsim.Pe;
 import org.cloudbus.cloudsim.Vm;
 
 /**
- * Author: ignacio
- * Date: 04/02/2017.
+ *  @author Yolanda de la Hoz Simon
+ *  @author Ignacio Uya Lassarte
+ *  @author Marcos Bernal España
+ *
+ *  @version 1.0
+ *  @since   2017-02-04
+ *
  * <p/>
  * This class defines a policy where the SLA is respected to the max. in order to
  * not lose money having to reimburse the users because the the VMs didn't have enough
