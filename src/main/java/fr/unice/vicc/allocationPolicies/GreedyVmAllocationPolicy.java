@@ -25,7 +25,7 @@ import java.util.List;
  * this energy is much lower than the reimbursement of the breaching the SLA agreement.
  */
 public class GreedyVmAllocationPolicy extends AbstractAllocationPolicy {
-    public static final double TOLERANCE = Double.parseDouble(System.getProperty("Tolerance"));
+    public static final double TOLERANCE = Double.parseDouble(System.getProperty("Tolerance","500.0"));
 
     /**
      * The default constructor from AbstractAllocationPolicy is enough.
@@ -56,7 +56,6 @@ public class GreedyVmAllocationPolicy extends AbstractAllocationPolicy {
 
         for (Host host : hostList) {
             for (Pe processingElem : host.getPeList()) {
-                System.out.println(vm.getMips());
                 if (vm.getMips() - TOLERANCE < processingElem.getPeProvisioner().getAvailableMips()
                     && allocateHostForVm(vm, host))
                     return true;
