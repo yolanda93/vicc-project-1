@@ -9,8 +9,13 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * Author: ignacio
- * Date: 04/02/2017.
+ *  @author Yolanda de la Hoz Simon
+ *  @author Ignacio Uya Lassarte
+ *  @author Marcos Bernal España
+ *
+ *  @version 1.0
+ *  @since   2017-02-04
+ *
  * <p/>
  * This class defines a policy where we try to respect the SLA as much as possible while also
  * trying to save some money on power consumption. The main problem here is that infringing the
@@ -20,7 +25,7 @@ import java.util.List;
  * this energy is much lower than the reimbursement of the breaching the SLA agreement.
  */
 public class GreedyVmAllocationPolicy extends AbstractAllocationPolicy {
-    public static final double TOLERANCE_PERCENTAGE = 0.9;
+    public static final double TOLERANCE = Double.parseDouble(System.getProperty("Tolerance"));
 
     /**
      * The default constructor from AbstractAllocationPolicy is enough.
@@ -49,12 +54,14 @@ public class GreedyVmAllocationPolicy extends AbstractAllocationPolicy {
             }
         });
 
-        for (Host host : hostList)
+        for (Host host : hostList) {
             for (Pe processingElem : host.getPeList()) {
-                if (vm.getMips() * TOLERANCE_PERCENTAGE < processingElem.getPeProvisioner().getAvailableMips()
+                System.out.println(vm.getMips());
+                if (vm.getMips() - TOLERANCE < processingElem.getPeProvisioner().getAvailableMips()
                     && allocateHostForVm(vm, host))
                     return true;
             }
+        }
         return false;
     }
 }

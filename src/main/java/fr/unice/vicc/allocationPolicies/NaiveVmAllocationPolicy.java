@@ -6,7 +6,12 @@ import org.cloudbus.cloudsim.Vm;
 import java.util.List;
 
 /**
- * Created by fhermeni2 on 16/11/2015.
+ *  @author Yolanda de la Hoz Simon
+ *  @author Ignacio Uya Lassarte
+ *  @author Marcos Bernal España
+ *
+ *  @version 1.0
+ *  @since   2017-02-04
  * This Allocation Policy will allocate any VM in the first host available
  * without any other consideration.
  */

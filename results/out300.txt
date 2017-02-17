@@ -1,0 +1,89 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for fr.unice:vicc:jar:1.0
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ line 27, column 13
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building vicc 1.0
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- exec-maven-plugin:1.3.2:java (default-cli) @ vicc ---
+[WARNING] Warning: killAfter is now deprecated. Do you need it ? Please comment on MEXEC-6.
+Day 20110303
+Initialising...
+Incomes:    1317.67€
+Penalties:  0.06€
+Energy:     274.31€
+Revenue:    1043.31€
+
+Day 20110306
+Incomes:    949.85€
+Penalties:  0.01€
+Energy:     247.72€
+Revenue:    702.12€
+
+Day 20110309
+Incomes:    700.27€
+Penalties:  1.12€
+Energy:     260.17€
+Revenue:    438.99€
+
+Day 20110322
+Incomes:    1461.02€
+Penalties:  0.00€
+Energy:     312.73€
+Revenue:    1148.29€
+
+Day 20110325
+Incomes:    1250.28€
+Penalties:  3.66€
+Energy:     274.82€
+Revenue:    971.80€
+
+Day 20110403
+Incomes:    1749.31€
+Penalties:  2.36€
+Energy:     327.80€
+Revenue:    1419.16€
+
+Day 20110409
+Incomes:    1371.14€
+Penalties:  0.00€
+Energy:     296.85€
+Revenue:    1074.29€
+
+Day 20110411
+Incomes:    1385.64€
+Penalties:  0.00€
+Energy:     290.46€
+Revenue:    1095.17€
+
+Day 20110412
+Incomes:    1218.62€
+Penalties:  0.01€
+Energy:     271.17€
+Revenue:    947.45€
+
+Day 20110420
+Incomes:    994.78€
+Penalties:  0.03€
+Energy:     257.22€
+Revenue:    737.53€
+
+Incomes:    12398.59€
+Penalties:  7.24€
+Energy:     2813.24€
+Revenue:    9578.11€
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 03:21 min
+[INFO] Finished at: 2017-02-17T10:43:24+01:00
+[INFO] Final Memory: 15M/920M
+[INFO] ------------------------------------------------------------------------

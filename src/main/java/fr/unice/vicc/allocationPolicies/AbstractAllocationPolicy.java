@@ -9,8 +9,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Author: ignacio
- * Date: 04/02/2017.
+ *  @author Yolanda de la Hoz Simon
+ *  @author Ignacio Uya Lassarte
+ *  @author Marcos Bernal España
+ *
+ *  @version 1.0
+ *  @since   2017-02-04
  * This class is a wrapper for the real policies. There are a number of methods common
  * for every policy, namely the getters, setters and constructor. They are mostly the
  * same in every case, so it makes no sense to repeat code in each policy.
