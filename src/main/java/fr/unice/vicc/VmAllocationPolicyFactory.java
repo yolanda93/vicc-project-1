@@ -27,7 +27,7 @@ public class VmAllocationPolicyFactory {
       case "dr":
         return new DisasterRecoveryVmAllocationPolicy(hosts);
       case "ft":
-        return new FTVmAllocationPolicy(hosts);
+        return new FaultToleranceVmAllocationPolicy(hosts);
       case "nextFit":
         return new NextFitBalancingVmAllocationPolicy(hosts);
       case "worstFit":
