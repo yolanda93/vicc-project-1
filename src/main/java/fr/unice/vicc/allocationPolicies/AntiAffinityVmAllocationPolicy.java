@@ -29,33 +29,22 @@ public class AntiAffinityVmAllocationPolicy extends AbstractAllocationPolicy {
 
   @Override
   public boolean allocateHostForVm(Vm vm) {
-    for (Host h : getHostList()) {
-      if (allocateHostForVm(vm, h) == true)
-        return true;
-    }
-
-    return false;
-  }
-
-
-  @Override
-  public boolean allocateHostForVm(Vm vm, Host h) {
 
     int vmAffinity = (vm.getId() == 0) ? 0 : vm.getId() / 100;
 
-    //System.out.print("Host:"+ h.getId() + " Vm:" + vm.getId() + " Aff:"+vmAffinity +"\n");
-
-    if (h.vmCreate(vm)) {
+    for (Host h : getHostList()) {
       if (affinityMap.isEmpty() || !affinityMap.containsKey(h.getId())) {
-        hoster.put(vm.getUid(), h);
-        affinityMap.put(h.getId(), new ArrayList<Integer>());
-        affinityMap.get(h.getId()).add(vmAffinity);
-        return true;
-      } else {
-        if (!affinityMap.get(h.getId()).contains(vmAffinity)) {
-          hoster.put(vm.getUid(), h);
+        if (allocateHostForVm(vm, h)) {
+          affinityMap.put(h.getId(), new ArrayList<Integer>());
           affinityMap.get(h.getId()).add(vmAffinity);
           return true;
+        }
+      } else {
+        if (!affinityMap.get(h.getId()).contains(vmAffinity)) {
+          if (allocateHostForVm(vm, h)) {
+            affinityMap.get(h.getId()).add(vmAffinity);
+            return true;
+          }
         }
       }
     }
