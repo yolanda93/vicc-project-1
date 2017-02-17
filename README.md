@@ -140,5 +140,5 @@ Penalties: 7.24 €
 Revenue: 9,636.42 €
 
 [This figure](figs/Greedy_Calibration.png) shows the different values points used to produce overbooking in the host machines. We hve decided to use 500 MIPS at is is the maximun value obtained. Maybe there are better values between 450 and 550, but every test takes 10 minutes and we already ran from 0 to 950 with a step of 50.
-The ["Normalized Version"](figs/Greedy_Calibration.png) shows a the difference between the values of each point and the maximum for that metric, it can provide a better view of how the system evolves.
+The ["Normalized Version"](figs/Greedy_Calibration_Norm.png) shows a the difference between the values of each point and the maximum for that metric, it can provide a better view of how the system evolves.
 We also tried using a "tolerance" factor by multipliying the VM's MIPS by a number between 1.0 and 0.5, using increments of 0.05, but the results were worse in all the cases.
