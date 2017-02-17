@@ -82,7 +82,7 @@ public class DisasterRecoveryVmAllocationPolicy extends AbstractAllocationPolicy
   @Override
   public void deallocateHostForVm(Vm vm) {
     if(hoster.containsKey(vm.getUid())) {
-      Host h = hoster.remove(vm);
+      Host h = getHost(vm);
 
       if(h != null) {
         int vmAffinity = (vm.getId() == 0) ? 0 : vm.getId() / 100;
@@ -92,6 +92,7 @@ public class DisasterRecoveryVmAllocationPolicy extends AbstractAllocationPolicy
           affinityMap.remove(h.getId());
         affinityNodesSwitch.get(vmAffinity)[getHostSwitchId(h)]--;
         h.vmDestroy(vm);
+        hoster.remove(vm.getUid());
       }
     }
   }

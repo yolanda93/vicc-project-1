@@ -56,7 +56,8 @@ public class AntiAffinityVmAllocationPolicy extends AbstractAllocationPolicy {
   @Override
   public void deallocateHostForVm(Vm vm) {
         if(hoster.containsKey(vm.getUid())) {
-            Host h = hoster.remove(vm);
+            Host h = getHost(vm);
+
 
           if(h != null) {
             int vmAffinity = (vm.getId() == 0) ? 0 : vm.getId() / 100;
@@ -65,6 +66,7 @@ public class AntiAffinityVmAllocationPolicy extends AbstractAllocationPolicy {
             if (affinityMap.get(h.getId()).isEmpty())
               affinityMap.remove(h.getId());
             h.vmDestroy(vm);
+            hoster.remove(vm.getUid());
           }
         }
     }
