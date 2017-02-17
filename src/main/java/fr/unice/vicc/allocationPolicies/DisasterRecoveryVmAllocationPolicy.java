@@ -19,7 +19,7 @@ import java.util.Map;
  * This class defines a policy where we try to respect the SLA as much as possible while also
  * trying to store the VMs in different nodes according to their IDs affinity. All VMs with an
  * id between [X00-X99] (where X is the same digit (0,1,2...)) must be on distinct nodes, balancing
- * between the 2 switches(0-399)(400-799).
+ * between the 2 switches(Ml110G4 nodes connected to one and Ml110G5 to another).
  *
  * The main problem here is that when a fault tolerant schedule places two VM replicas over the same host,
  * if the host fails both VMs get lost, besides when one switch is turned off all host connected to it lost
@@ -63,15 +63,15 @@ public class DisasterRecoveryVmAllocationPolicy extends AbstractAllocationPolicy
 
 
   /**
-   * The hosts are connected "physically" to two switches. From 0 to 399 are connected to switch 0,
-   * and the host from 400 to 799 are connected to switch 1. With this simple method we determine the number from
-   * the ID of the host.
+   * The hosts are connected "physically" to two switches. All Ml110G4 machines (host with 3720 MILPS) are connected
+   * to switch 0 and all machines Ml110G5 (hosts with 5320 MIPS) are connected to switch 1.
+   * With this simple method we determine the number from the ID of the host.
    *
    * @param h is the host used to specify the switch connected
    * @return the number of the switch connected to the host (0 or 1)
    */
   private int getHostSwitchId(Host h){
-    if (h.getId() > 399)
+    if (h.getTotalMips() > 3721) //Ml110G4 = 2pes* x 1860 MILPS => 3720
       return 1;
 
     return 0;
